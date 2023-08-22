@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 const ProductCard = ({ product }) => {
 
   const [activeImg, setActiveImage] = useState('');
+  const [isImageEnlarged, setIsImageEnlarged] = useState(false);
 
   useEffect(() => {
     setActiveImage(product.thumbnail);
@@ -66,15 +67,16 @@ const ProductCard = ({ product }) => {
             <img
               src={activeImg}
               alt=""
-              className="w-full h-48 md:h-full aspect-video object-contain"
+              className="w-full h-48 md:h-full aspect-video object-contain cursor-pointer"
+              onClick={() => setIsImageEnlarged(true)}
             />
-            <div className="flex flex-row justify-between h-20 md:h-auto">
+            <div className="flex overflow-x-scroll md:overflow-x-auto">
               {product.images.map((image, imgIndex) => (
                 <img
                   key={imgIndex}
                   src={image}
                   alt={imgIndex}
-                  className="w-16 h-16 md:w-20 md:h-20 rounded-md cursor-pointer"
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-md cursor-pointer mx-1"
                   onClick={() => setActiveImage(image)}
                 />
               ))}
